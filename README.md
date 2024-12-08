@@ -7,3 +7,6 @@ I will only work on this when I feel like it
 pyenv virtualenv 3.10 advent
 pyenv activate advent
 ```
+
+> [!NOTE]  
+> We should only include our solution .py script and nothing more
