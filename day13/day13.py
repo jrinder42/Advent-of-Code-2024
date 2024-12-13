@@ -81,6 +81,46 @@ print(f'Advent of Code Day 13 Answer Part 1: {total}')
 
 # Part 2
 
-# don't know how to do this efficiently
+# Note: searching around, I saw that this problem involved linear algebra and then it became obvious
+
+def solve_linear_system(a1, b1, c1, a2, b2, c2):
+    # cramer's rule
+    det_A = a1 * b2 - a2 * b1
+
+    if det_A == 0:
+        #print("The system has no unique solution (determinant is zero).")
+        return -1
+
+    # Calculate determinants for x and y
+    det_Ax = c1 * b2 - c2 * b1
+    det_Ay = a1 * c2 - a2 * c1
+
+    # Ensure the solutions are integers by checking divisibility
+    if det_Ax % det_A != 0 or det_Ay % det_A != 0:
+        #print("The system does not have integer solutions.")
+        return -1
+
+    # Calculate x and y using integer division
+    x = det_Ax // det_A
+    y = det_Ay // det_A
+
+    return x, y
+
+total = 0
+for machine in machines:
+    result = solve_linear_system(
+        machine[0]["X"],
+        machine[1]["X"],
+        machine[2]["Prize"]["X"] + 10000000000000,
+        machine[0]["Y"],
+        machine[1]["Y"],
+        machine[2]["Prize"]["Y"] + 10000000000000
+    )
+    if result == -1:
+        continue
+
+    total += 3 * result[0] + result[1]
+
+print(f'Advent of Code Day 13 Answer Part 2: {total}')
 
 print(f"elapsed time: {time.perf_counter() - start_time}")
