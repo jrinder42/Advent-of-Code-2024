@@ -61,7 +61,7 @@ for i, quad in enumerate(product(r_quad, c_quad)):
         if quad[1][0] <= x < quad[1][1] and quad[0][0] <= y < quad[0][1]:
             zones[i] += 1
 
-print(f'Advent of Code Day 13 Answer Part 1: {math.prod(zones.values())}')
+print(f'Advent of Code Day 14 Answer Part 1: {math.prod(zones.values())}')
 
 # Part 2
 
