@@ -94,8 +94,6 @@ grid = []
 for r in range(elf.shape[0]):
     temp = []
     for c in range(elf.shape[1]):
-        #if r == 0 or r == elf.shape[0] - 1:
-        #    grid.append(["##" for _ in range(elf.shape[1])])
         if elf[r, c] == "#":
             temp.append("#")
             temp.append("#")
