@@ -60,7 +60,7 @@ def get_moves(current, arr, cheat=None):
     for pair in [(-1, 0), (0, 1), (1, 0), (0, -1)]:
         dr = r + pair[0]
         dc = c + pair[1]
-        if 0 <= dr < arr.shape[0] and 0 <= dc < arr.shape[1]:# and arr[dr, dc] != "#":
+        if 0 <= dr < arr.shape[0] and 0 <= dc < arr.shape[1]:
             if arr[dr, dc] != "#":
                 moves.append(((dr, dc), 1))
             if cheat is not None and (dr, dc) == cheat:
