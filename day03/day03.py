@@ -4,6 +4,7 @@ Advent of Code 2024 - Day 3
 
 """
 
+import math
 from ast import literal_eval
 import re
 
@@ -30,6 +31,17 @@ print(f'Advent of Code Day 3 Answer Part 1: {total}')
 
 # Part 2
 
-# did not do, too annoying for somebody not well-versed in regex
+pattern = r'mul\(\d+\s*,\s*\d+\)|do\(\)|don\'t\(\)'
+matches = re.findall(pattern, text[0])
+total = 0
+skip = False
+for match in matches:
+    if not skip and match.startswith('mul'):
+        nums = re.findall('\d+', match)
+        total += math.prod([int(num) for num in nums])
+    elif match == "do()":
+        skip = False
+    else:  # match == "don\'t()"
+        skip = True
 
 print(f'Advent of Code Day 3 Answer Part 2: {total}')
