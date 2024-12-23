@@ -5,13 +5,13 @@ Advent of Code 2024 - Day 5
 """
 
 from ast import literal_eval
-from collections import deque
+from collections import deque, defaultdict
 
 
 top = []
 bottom = []
 switch = False
-with open('day05ex.txt', 'r') as file:
+with open('day05.txt', 'r') as file:
     for line in file:
         line = line.strip('\n')
         if not line.strip():
@@ -29,6 +29,7 @@ with open('day05ex.txt', 'r') as file:
 # Part 1
 
 total = 0
+p2_bad = []
 for lst in bottom:
     lst_dict = {}
     for i, num in enumerate(lst):
@@ -42,9 +43,33 @@ for lst in bottom:
     if not bad_counter:
         n = len(lst)
         total += lst[n // 2]
+    else:
+        p2_bad.append(lst)
 
 print(f'Advent of Code Day 5 Answer Part 1: {total}')
 
 # Part 2
 
-# too time-consuming, so didn't do it
+top_dict = defaultdict(list)
+for left, right in top:
+    top_dict[left].append(right)
+
+total = 0
+for lst in p2_bad:
+    idx = 0
+    new_list = []
+    while idx < len(lst):
+        elem = lst[idx]
+        diff = set(lst[idx + 1:]).difference(top_dict[elem])
+        for num in diff:
+            curr_idx = lst.index(elem)
+            to_move_idx = lst.index(num)
+            lst[curr_idx], lst[to_move_idx] = lst[to_move_idx], lst[curr_idx]
+
+        if not diff:
+            idx += 1
+
+    n = len(lst)
+    total += lst[idx // 2]
+
+print(f'Advent of Code Day 5 Answer Part 2: {total}')
