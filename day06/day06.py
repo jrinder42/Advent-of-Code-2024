@@ -147,7 +147,6 @@ def guard_move_p2(arr, potent):
             else:  # rotate
                 pos = [r, c, '^']
 
-
     return False
 
 total = 0
